@@ -1,0 +1,139 @@
+﻿diff --git src/component/MovieDetails.jsx src/component/MovieDetails.jsx
+index 24896a4..d6b598d 100644
+--- src/component/MovieDetails.jsx
++++ src/component/MovieDetails.jsx
+@@ -100,7 +100,7 @@ function MovieDetails({ id, locationState }) {
+             </Placeholder>
+           ) : 
+           (
+-            <MovieCardImage movieName={movie.name} size = "medium" minHeight={100} fontSize={48} imageUrl={`https://via.placeholder.com/200x280/FFFFFF/000000?text=${movie.name}`}/>
++            <MovieCardImage movieName={movie.name} size = "medium" minHeight={100} fontSize={48} imageUrl={movie.imageUrl}/>
+           )}
+           {loading ? (
+             <Placeholder>
+diff --git src/component/MoviesListCardGroup.jsx src/component/MoviesListCardGroup.jsx
+index 76887ea..ca4b25f 100644
+--- src/component/MoviesListCardGroup.jsx
++++ src/component/MoviesListCardGroup.jsx
+@@ -11,13 +11,16 @@ import MovieCardImage from './MovieCardImage'
+ import { useTracking } from 'react-tracking';
+ import { dispatchUserEvent } from '../util/Utils';
+ 
++// Heads up!
++// Don't forget to setyp required CSS!
++import "pure-react-carousel/dist/react-carousel.es.css";
+ 
+-
++import { CarouselProvider, Image, Slide, Slider } from "pure-react-carousel";
++import CustomDotGroup from "./CustomDotGroup";
++import { Divider } from "semantic-ui-react";
+ 
+ 
+ function MoviesListCardGroup({ items, pageViewOrigin, cardStyle }) {
+-    // console.log(items)
+-
+     // const { state: ContextState } = useContext(AuthContext);
+     // const {userId} = ContextState;
+ 
+@@ -36,7 +39,7 @@ function MoviesListCardGroup({ items, pageViewOrigin, cardStyle }) {
+             onClick={() => { trackEvent({ EVENT_TYPE: 'click', movieId: `${movie.id}` }); }}
+             >
+   
+-            <MovieCardImage movieName={movie.name} size = "small" minHeight={140} fontSize={24} imageUrl={`https://via.placeholder.com/200x280/FFFFFF/000000?text=${movie.name}`}
++            <MovieCardImage movieName={movie.name} size = "small" minHeight={140} fontSize={24} imageUrl={movie.imageUrl}
+             />
+             <Card.Content>
+               {movie.score? <Card.Meta as="h1">{movie.name}</Card.Meta> : <Card.Header>{movie.name}</Card.Header> }
+@@ -53,11 +56,80 @@ function MoviesListCardGroup({ items, pageViewOrigin, cardStyle }) {
+         );
+     };
+   
++    function ImageCarouselMovie(){
++      // console.log('👍🤞🤞❤❤',items);
++      if(items.length > 0) {
++        return (
++          <CarouselProvider
++            naturalSlideWidth={2}
++            naturalSlideHeight={3}
++            totalSlides={6}
++          >
++            <Slider>
++              <Slide tag="a" href='/movies/99' index={0}>
++                <Image centered='ture' src={items[0].imageUrl} />
++              </Slide>
++              <Slide tag="a" index={1}>
++                <Image centered='ture' src={items[1].imageUrl} />
++              </Slide>
++              <Slide tag="a" index={2}>
++                <Image centered='ture' src={items[2].imageUrl} />
++              </Slide>
++              <Slide tag="a" index={3}>
++                <Image centered='ture' src={items[4].imageUrl} />
++              </Slide>
++              <Slide tag="a" index={4}>
++                <Image centered='ture' src={items[5].imageUrl} />
++              </Slide>
++              <Slide tag="a" index={5}>
++                <Image centered='ture' src={items[6].imageUrl} />
++              </Slide>
++
++            </Slider>
++       
++            <Divider />
++            <CustomDotGroup slides={6} />
++          </CarouselProvider>
++        );
++      } else {return(<p>loading....</p>)}
++    };
++
++    function MakeSlide(){
++      if(items.length > 0) {
++        return (items.map((movie,idx) =>
++          <Slide tag="a" href='./movies/99'  index={idx} key={movie.id}>
++            <Image centered='ture' src={movie.imageUrl} />
++          </Slide>)
++        )
++      };
++    };
++
++    function ImageCarouselMovie2(){
++      // console.log('👍🤞🤞❤❤',items);
++      if(items.length > 0) {
++        return (
++          <CarouselProvider
++            naturalSlideWidth={2}
++            naturalSlideHeight={3}
++            totalSlides={items.length}
++          >
++            <Slider>
++              {MakeSlide()}
++            </Slider>
++       
++            <Divider />
++            <CustomDotGroup slides={items.length} />
++          </CarouselProvider>
++        );
++      } else {return(<p>loading....</p>)}
++    };
++
+     return (
+       <Track>
+-      <Card.Group centered>
++      <ImageCarouselMovie2 />
++      { <Card.Group centered>
+         {movieCards()}
+-      </Card.Group>
++      </Card.Group> }
+       </Track>
+     );
+   };
+diff --git src/config.json src/config.json
+index cd2d5e2..851490b 100644
+--- src/config.json
++++ src/config.json
+@@ -1,4 +1,4 @@
+ {
+-    "ApiUrl": ""
++    "ApiUrl": "https://hu63hd8u19.execute-api.ap-northeast-2.amazonaws.com/prod"
+     
+ }

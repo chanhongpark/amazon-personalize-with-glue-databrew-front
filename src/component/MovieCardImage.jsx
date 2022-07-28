@@ -5,10 +5,10 @@ import { Image, Segment } from 'semantic-ui-react'
 
 function MovieCardImage({movieName, minHeight, fontSize, imageUrl}) {
   
-  
+  console.log('❤❤❤❤',movieName,minHeight, imageUrl);
     return (
       <Segment style={{minHeight, display: 'flex'}}>
-        <Image centered src={ imageUrl }  />
+        <Image rounded size='medium' centered src={ imageUrl }  />
       </Segment>
     );
   }

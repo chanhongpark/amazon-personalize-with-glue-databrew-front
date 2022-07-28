@@ -6,6 +6,7 @@ import { Menu, Container, Icon } from 'semantic-ui-react'
 import MoviesList from './component/MoviesList'
 import MovieDetails from './component/MovieDetails'
 import { AuthContext } from './context/Auth.context';
+import MoviesCarousel from './component/MoviesCarousel'
 
 
 function Dashboard() {
@@ -34,15 +35,17 @@ function Dashboard() {
                 
             </Container>
 
-            <Container style={{ marginTop: 70 }}>
-                <Route path='/' exact component={() => 
+            <Route path='/' exact component={() => 
+                <MoviesCarousel/>
+            }/>
+            <Route path='/allmovie' exact component={() => 
                 <MoviesList/>
-                }/>
-                <Route path='/movies/:movieId' render={props => 
+            }/>
+            <Route path='/movies/:movieId' render={props => 
                 <MovieDetails id={props.match.params.movieId} locationState={props.location.state}/>
-                }/>
-                {/* <Route path='/login' exact component={() => <Login />} /> */}
-            </Container>
+            }/>
+            {/* <Route path='/login' exact component={() => <Login />} /> */}
+
             </Router>
         </div>
     );

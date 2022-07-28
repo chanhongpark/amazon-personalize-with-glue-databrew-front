@@ -34,7 +34,7 @@ export const ContextProvider = props => {
       if (!error) {
         setLoginSuccess(true);
         setUserName(email);
-        (email === "admin")? setUserId("1") : setUserId("4");
+        // (email === "admin")? setUserId("1") : setUserId("4");
       } else {
         setLoginError(error);
       }
@@ -60,38 +60,27 @@ export const ContextProvider = props => {
       {props.children}
     </AuthContext.Provider>
   );
-};
+// };
 
-// Login data from DDB
-async function fetchData () {
-  const response = await axios.get(
-      'https://k1js8ud1xd.execute-api.us-east-1.amazonaws.com/prod/user',);
-   console.log((response.data).Items);
-   return (response.data).Items;
-  //  setMovies((response.data)['movies'])
-  
-  
-}
+// login
+async function fetchLogin (email, password, id, callback) {
+  const ReqAuthUrl = `https://hu63hd8u19.execute-api.ap-northeast-2.amazonaws.com/prod/user/${email}`
+  const response = await axios.get(ReqAuthUrl,);
+  console.log('🎄🎄🎄',(response))
+  console.log('✔✔✔✔✔✔',(response.data[0].password))
 
-
-// fake login
-const fetchLogin = (email, password, id, callback) => {
-  // setTimeout(() => {
-    // const response = axios.get(
-    //   'https://k1js8ud1xd.execute-api.us-east-1.amazonaws.com/prod/user',);
-    //   console.log((response.data)['user']);
-      // setMovies((response.data)['user'])
-      // const result = fetchData();
+  console.log('Request email',email)
+  const getpwd = response.data[0].password;
       // const username = result.find( ({ name }) => name === 'admin' );
-      // console.log("result: ", result)
-    if (email === 'admin' && password === 'admin') {
-      return callback(null);
-    }
-    else if (email === 'admin2' && password === 'admin2'){
+  console.log("getpwd: ", getpwd)
+
+    if (password === getpwd) {
+      setUserId(response.data[0].userId);
+      console.log("👌👌👌setUserId: ", response.data[0].userId);
       return callback(null);
     }
     else {
       return callback(new Error('Invalid email and password'));
     }
 }
-  // }, 1000);
+}

@@ -3,7 +3,7 @@ import axios from 'axios';
 import config from '../config.json';
 
 export async function dispatchUserEvent(data) {
-    var user = "1test"
+    // var user = "1test"
 
     const config_api_url = config.ApiUrl;
 
@@ -11,7 +11,7 @@ export async function dispatchUserEvent(data) {
     // React에서는 Date를 밀리세컨드로 보내고, Personalize에서는 세컨드로 보낸다
     var Data = { 
         
-        USER_ID: "1",
+        USER_ID: data['UserId'],
         ITEM_ID: data['movieId'] ?? '',
         TIMESTAMP: (Date.now()).toString(),
         EVENT_TYPE: data['EVENT_TYPE'] ?? '',
@@ -28,7 +28,9 @@ export async function dispatchUserEvent(data) {
 
     // Push to Kinesis putAPI
     // const url = "https://k1js8ud1xd.execute-api.us-east-1.amazonaws.com/prod/stream/demogoprime-kinesis-stream-test/record";
-    const url = `${config_api_url}/stream/demogoprime-kinesis-stream-prd/record`
+    const url = `${config_api_url}/stream`
+
+    // console.log('send event data🎉🎉🎉🎉',Data)
 
     await axios.post(url, {
         Data, PartitionKey

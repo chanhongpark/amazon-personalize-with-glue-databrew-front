@@ -34,24 +34,30 @@ const LoginForm = () => {
     });
   }
 
-  React.useEffect(() => {
-    async function fetchData () {
-      const response = await axios.get(
-        'https://k1js8ud1xd.execute-api.us-east-1.amazonaws.com/prod/user',);
-     console.log((response.data).Items);
-    //  console.log((response.data).Items[0]);
-     return (response.data).Items;
-      //  setMovies((response.data)['Item'])
+  // React.useEffect(() => {
+  //   async function fetchData () {
+  //     const response = await axios.get(
+  //       'https://k1js8ud1xd.execute-api.us-east-1.amazonaws.com/prod/user',);
+  //    console.log((response.data).Items);
+  //   //  console.log((response.data).Items[0]);
+  //    return (response.data).Items;
+  //     //  setMovies((response.data)['Item'])
       
       
-    }
-    fetchData();
-  }, []);
+  //   }
+  //   fetchData();
+  // }, []);
     
   return (
     <>
-    <Image src="/image/unicorngym.png" centered size='medium' />
-    <Container text>
+    <Container style={{ marginTop: 150 }} textAlign='center' >
+      <h2> AWS Personalize Movie Recommendation</h2>
+    </Container>
+    <Container style={{ marginTop: 70 }} textAlign='center' >
+      <Image src="/image/pngwing.com.png" centered size='medium' />
+    </Container>
+
+    <Container style={{ marginTop: 70 }} >
     <form name="loginForm" onSubmit={onSubmit}>
       
       <div className="row">

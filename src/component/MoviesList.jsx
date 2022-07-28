@@ -3,9 +3,10 @@ import axios from 'axios';
 import config from '../config.json';
 
 
-import { Container } from 'semantic-ui-react'
+import { Container,Icon } from 'semantic-ui-react'
 
 import MoviesListCardGroup from './MoviesListCardGroup';
+import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
 
 function MoviesList() {
     const [movies, setMovies] = React.useState([]);
@@ -13,6 +14,7 @@ function MoviesList() {
 
     // Fetch all movie data from Movie Table in DynamoDB (GET)
     // config.ApiUrl need to be updated during Frontend set up lab.
+    
     const config_api_url = config.ApiUrl;
     const get_movie_url = `${config_api_url}/movie`
     React.useEffect(() => {
@@ -34,6 +36,7 @@ function MoviesList() {
     document.title = 'DemoGo Prime';
     return (
       <Container style={{ marginTop: 70 }}>
+        <NavLink to='/'><Icon name='arrow circle left'/>Go to Home</NavLink>
         <MoviesListCardGroup items={movies} pageViewOrigin='Browse'/>
       </Container>
     );
