@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 import { Image, Segment } from 'semantic-ui-react'
 
-function MovieCardImage({movieName, minHeight, fontSize, imageUrl}) {
+function MovieCardImage({movieName, minHeight, size, imageUrl}) {
   
   console.log('❤❤❤❤',movieName,minHeight, imageUrl);
     return (
-      <Segment style={{minHeight, display: 'flex'}}>
-        <Image rounded size='medium' centered src={ imageUrl }  />
-      </Segment>
+      // <Segment style={{minHeight, display: 'flex'}}>
+        <Image fluid Size={size} src={ imageUrl }  />
+      // </Segment>
     );
   }
   

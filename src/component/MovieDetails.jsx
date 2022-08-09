@@ -73,10 +73,8 @@ function MovieDetails({ id, locationState }) {
     });
    
     return (
-      <Container>
-        <NavLink to='/'><Icon name='arrow left'/>Back to Movie list</NavLink>
-        <Divider hidden/>
-        <Card key={movie.id} style={{ width: '100%', maxWidth: 720, minHeight: 100, margin: 'auto' }}>
+      <Container style={{ marginTop: 70 }}>
+        <Card key={movie.id} style={{ width: '50%', minHeight: 100, margin: 'auto' }}>
           {loading ? (
             <Placeholder fluid style={{minHeight: 320}}>
               <Placeholder.Image/>
@@ -102,11 +100,11 @@ function MovieDetails({ id, locationState }) {
                 </Button>
             </Card.Content>
           )}
-  
-        </Card>
-        <Divider hidden/>
-        {/* <RecommendedMovieList recommendedMovies={recommendedMovies} title = "실시간 추천 리스트"/>
-        <RecommendedMovieList recommendedMovies={recommendedMovies2} title = "배치(Daily) 추천 리스트"/> */}
+          </Card>
+          <Button floated='right' inverted primary size='medium' as={Link} to='/'> 
+            Back to Movie list
+            <Icon name='left arrow' />
+          </Button>
       </Container>
     );
   };

@@ -1,75 +1,154 @@
-#app { height: 100% }
-html,
-body {
-  position: relative;
-  height: 100%;
+// Override swiper styles
+.swiper-pagination {
+  top: 0 !important;
+  height: 1rem !important;
+  text-align: right !important;
 }
 
-body {
-  background: #eee;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  color: #000;
-  margin: 0;
-  padding: 0;
+.swiper-pagination-bullet {
+  background-color: rgb(255, 255, 255) !important;
 }
 
-.swiper {
-  width: 100%;
-  height: 100%;
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  width: 97.5% !important;
+  height: 1px !important;
+}
+
+.swiper-container-horizontal > .swiper-pagination-bullets {
+  bottom: 0 !important;
+  left: 0 !important;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  /* transition: all 450ms !important; */
+  color: rgb(251, 14, 14);
+}
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  transform: scale(1.2) !important;
+  transition: all 450ms !important;
 }
 
 .swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
+  transition: all 450ms !important;
 }
 
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.swiper-wrapper:hover .swiper-slide {
+  z-index: 10000;
+  opacity: 0.3 !important;
+}
+.swiper-wrapper:hover .swiper-slide:hover {
+  transform: scale(1.1) !important;
+  opacity: 1 !important;
 }
 
-.swiper-button-next {
-    background: url(./next.png) no-repeat;
-    background-size: 100% auto;
-    background-position: center;
-  }
-  
-  .swiper-button-prev {
-    background: url(./prev.png) no-repeat;
-    background-size: 100% auto;
-    background-position: center;
-  }
-  
-.swiper-button-next::after,
-.swiper-button-prev::after {
+.movieShowcase {
+  background-color: transparent;
+  grid-column: 2/13;
+  color: rgb(255, 255, 255);
+}
+.movieShowcase__heading {
+  position: relative;
+  top: 3rem;
+  /* margin: 0; */
+  padding-left: 4rem;
+  font-weight: 500;
+}
+.movieShowcase__container::-webkit-scrollbar {
   display: none;
 }
 
-.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
-  background: rgb(204, 23, 80);
-  position: absolute;
-  left: 0;
-  top: 0;
+.movieShowcase__container--movie:hover ~ .movieShowcase__container--movie {
+  transform: translate3d(1rem, 0, 0);
+}
+
+.movieShowcase__container--movie {
+  cursor: pointer;
+  transition: all 450ms;
+  transform: center left;
+  padding-top: 3.5rem;
+  padding-bottom: 4rem;
+  min-height: 0;
+  object-fit: contain;
+}
+.movieShowcase__container--movie:not(:last-child) {
+  padding-right: 0.5rem;
+}
+.movieShowcase__container--movie-image {
+  height: 100%;
   width: 100%;
-  height: 200%;
-  transform: scale(0);
-  transform-origin: left top;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
+
+.headermovie {
+  background-color: black;
+  position: relative;
+  padding-top: 56.25%;
+}
+.headermovie__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.headermovie__container {
+  color: #fff;
+}
+.headermovie__container-heading {
+  font-size: 6rem;
+  position: absolute;
+  top: 12rem;
+  left: 3.5rem;
+  color: #fff;
+}
+
+.headermovie__container-overview {
+  top: 28rem;
+  left: 4rem;
+  position: absolute;
+  color: #fff;
+  width: 55rem;
+  line-height: 1.3;
+  padding-top: 2.5rem;
+  font-size: 1.8rem;
+}
+
+
+.ui.card {
+  display: inline-block;
+  margin: 10px;
+}
+
+.ui.card,
+.ui.cards>.card {
+  background-color: #080708;
+  color: rgb(14, 13, 13);
+}
+
+.ui.card.image {
+  background-color: #080708;
+}
+
+.ui.card.matthew {
+  background-color: #080708;
+}
+
+.ui.card.kristy {
+  background-color: #080708;
+}
+
+.ui.card>.content>a.header,
+.ui.cards>.card>.content>a.header,
+.ui.card .meta,
+.ui.cards>.card .meta,
+.ui.card>.content>.description,
+.ui.cards>.card>.content>.description,
+.ui.card>.extra a:not(.ui),
+.ui.cards>.card>.extra a:not(.ui) {
+  color: rgb(194, 185, 185);
+  font-size: 1.4rem;
 }

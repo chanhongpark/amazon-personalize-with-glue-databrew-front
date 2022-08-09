@@ -19,7 +19,8 @@ import "swiper/css/navigation";
 import MoviePoster from './GetMovieImg'
 
 import "../styles.css";
-import { Navigation, Pagination } from "swiper";
+// import { Navigation, Pagination,Scrollbar, A11y } from "swiper";
+import { useViewport } from '../hooks/useViewport'
 
 function MoviesCarouselPage({ items, pageViewOrigin, cardStyle }) {
     // const { state: ContextState } = useContext(AuthContext);
@@ -35,6 +36,7 @@ function MoviesCarouselPage({ items, pageViewOrigin, cardStyle }) {
           <SwiperSlide index={idx}
            key={movie.id}
           //  onClick={() => { trackEvent({ EVENT_TYPE: 'click', movieId: `${movie.id}` }); }}
+            className={'movieShowcase__container--movie' }
            >
             <Link to={{ pathname: `/movies/${movie.id}`, state:  {pageViewOrigin}  }}>
               <MoviePoster id = {movie.id} />
@@ -44,18 +46,44 @@ function MoviesCarouselPage({ items, pageViewOrigin, cardStyle }) {
     };
 
     function CarouselSwipe ()  {
+      const [windowDimensions] = useViewport()
+      const { width } = windowDimensions
+    
+
        return (
         <Swiper
-          slidesPerView={5}
-          spaceBetween={5}
+          // className='movieShowcase__container'
+          navigation={false}
+          grabCursor={false}
+          draggable={false}
           loop={true}
-          pagination={{
-            type: "progressbar",
+          loopAdditionalSlides={
+            width >= 1378 ? 4 : width >= 998 ? 3 : width >= 625 ? 2 : 2
+          }
+          breakpoints={{
+            1378: {
+              slidesPerView: 5,
+              slidesPerGroup: 5,
+            },
+            998: {
+              slidesPerView: 4,
+              slidesPerGroup: 4,
+            },
+            625: {
+              slidesPerView: 3,
+              slidesPerGroup: 3,
+            },
+            0: {
+              slidesPerView: 2,
+              slidesPerGroup: 2,
+            },
           }}
-          navigation={true}
-          modules={[Pagination, Navigation]}
-          className="mySwiper"
-        >
+          preventClicksPropagation={true}
+          preventClicks={true}
+          scrollbar={{ draggable: false, hide: true }}
+          slideToClickedSlide={false}
+          pagination={{ clickable: true }}
+      >
           {MakeSwipeSlide()}
          
         </Swiper>

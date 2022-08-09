@@ -8,7 +8,6 @@ import MovieDetails from './component/MovieDetails'
 import { AuthContext } from './context/Auth.context';
 import MoviesCarousel from './component/MoviesCarousel'
 
-
 function Dashboard() {
 
     const { logout } = useContext(AuthContext)
@@ -18,9 +17,9 @@ function Dashboard() {
     }
   
     return (
-        <div>
+        <>
             <Router>
-            <Menu fixed='top' color='teal' inverted>
+            <Menu fixed='top' color='black' inverted>
                 <Menu.Menu>
                 <Menu.Item header href='/'><Icon name='tv'/>DemoGo Prime</Menu.Item>
                 </Menu.Menu>
@@ -29,25 +28,20 @@ function Dashboard() {
                 <Menu.Item link onClick={onLogout}>Log out</Menu.Item>
                 </Menu.Menu>
             </Menu>
-
-            <Container style={{ marginTop: 70 }}>
-                <h1>Welcome to the Unicorn Company</h1>
-                
+            <Container fluid>
+                <Route path='/' exact component={() => 
+                    <MoviesCarousel/>
+                }/>
+                <Route path='/allmovie' exact component={() => 
+                    <MoviesList/>
+                }/>
+                <Route path='/movies/:movieId' render={props => 
+                    <MovieDetails id={props.match.params.movieId} locationState={props.location.state}/>
+                }/>
+                {/* <Route path='/login' exact component={() => <Login />} /> */}
             </Container>
-
-            <Route path='/' exact component={() => 
-                <MoviesCarousel/>
-            }/>
-            <Route path='/allmovie' exact component={() => 
-                <MoviesList/>
-            }/>
-            <Route path='/movies/:movieId' render={props => 
-                <MovieDetails id={props.match.params.movieId} locationState={props.location.state}/>
-            }/>
-            {/* <Route path='/login' exact component={() => <Login />} /> */}
-
             </Router>
-        </div>
+        </>
     );
   }
 

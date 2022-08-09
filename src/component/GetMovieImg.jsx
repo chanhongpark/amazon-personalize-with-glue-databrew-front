@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useState, useEffect } from 'react';
+import "../styles.css";
 
 function MoviePoster(id) {
     const ApiKey ='07f9ef25b539558ed23c3b6752d61713'
@@ -21,7 +22,7 @@ function MoviePoster(id) {
 
     return (
         <img src = {'https://image.tmdb.org/t/p/'+ImgSize+'/'+Movie.poster_path}
-            alt= 'No Image'
+            // className='movieShowcase__container--movie-image'
         />
     );
 }

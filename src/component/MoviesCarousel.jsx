@@ -9,6 +9,7 @@ import { NavLink, Link } from 'react-router-dom';
 import MoviesCarouselPage from './MoviesCarouselPage'
 
 import { AuthContext } from '../context/Auth.context';
+import ReactPlayer from 'react-player'
 
 function MoviesCarousel() {
     const [popmovies, setpopMovies] = React.useState([]);
@@ -22,8 +23,8 @@ function MoviesCarousel() {
   
     React.useEffect(() => {
       const config_api_url = config.ApiUrl;
-      const get_pop_movie_url = `${config_api_url}/recommendation/popularity`
-      const get_per_movie_url = `${config_api_url}/recommendation/personalized/${userId}`
+      const get_pop_movie_url = `${config_api_url}/movie`
+      const get_per_movie_url = `${config_api_url}/movie`
   
       async function fetchData () {
         const response = await axios.get(
@@ -53,17 +54,33 @@ function MoviesCarousel() {
   
     document.title = 'DemoGo Prime';
     return (
-      <div >
-      <Container fluid style={{ marginTop: 20 }}>
-        <Header as='h3'>
+      <>
+      <div className='headermovie' >
+        <ReactPlayer
+                      playing={true}
+                      loop={true}
+                      width='100%'
+                      height='100%'
+                      volume={1}
+                      muted={true}
+                      className='headermovie__video'
+                      url='https://vimeo.com/384025132'
+        />
+        <h1 className='headermovie__container-heading'>Narcos</h1>
+        <p className='headermovie__container-overview'>
+            A gritty chronicle of the war against Colombia's infamously violent and powerful drug cartels.
+        </p>
+      </div>
+        <Container fluid style={{ marginTop: 20, }}>
+        <Header as='h3' inverted>
           <Icon name='star' />
           <Header.Content>Popular movies
           <Header.Subheader>10 MOST POPULAR MOVIES RIGHT NOW</Header.Subheader>
           </Header.Content>
         </Header>
         <MoviesCarouselPage items={popmovies} pageViewOrigin='Browse'/>
-        <div class="ui divider"></div>
-        <Header as='h3'>
+        {/* <div class="ui divider"></div> */}
+        <Header as='h3' inverted>
           <Icon name='heart' />
           <Header.Content>Recommended movies
           <Header.Subheader>personalized movie recommendation</Header.Subheader>
@@ -71,12 +88,12 @@ function MoviesCarousel() {
         </Header>
         <MoviesCarouselPage items={permovies} pageViewOrigin='Browse'/>
         {/* <NavLink to='/allmovie'><Icon name='caret square right outline'/>All Movie List</NavLink> */}
-        <Button primary size='medium' as={Link} to='/allmovie'> 
+        <Button floated='right' inverted primary size='medium' as={Link} to='/allmovie'> 
           All Movie List 
           <Icon name='right arrow' />
         </Button>
       </Container>
-      </div>
+      </>
     );
   };
 
