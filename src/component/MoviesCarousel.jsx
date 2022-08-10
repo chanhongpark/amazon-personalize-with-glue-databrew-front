@@ -23,8 +23,8 @@ function MoviesCarousel() {
   
     React.useEffect(() => {
       const config_api_url = config.ApiUrl;
-      const get_pop_movie_url = `${config_api_url}/movie`
-      const get_per_movie_url = `${config_api_url}/movie`
+      const get_pop_movie_url = `${config_api_url}/recommendation/popularity`
+      const get_per_movie_url = `${config_api_url}/recommendation/personalized/${userId}`
   
       async function fetchData () {
         const response = await axios.get(
