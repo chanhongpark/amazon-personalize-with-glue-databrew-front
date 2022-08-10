@@ -95,7 +95,7 @@
 }
 .headermovie__video {
   position: absolute;
-  top: 0;
+  top: -15px;
   left: 0;
 }
 
@@ -111,7 +111,7 @@
 }
 
 .headermovie__container-overview {
-  top: 28rem;
+  top: 24rem;
   left: 4rem;
   position: absolute;
   color: #fff;
@@ -129,8 +129,8 @@
 
 .ui.card,
 .ui.cards>.card {
-  background-color: #080708;
-  color: rgb(14, 13, 13);
+  background-color: #baba49;
+  color: rgb(57, 43, 134);
 }
 
 .ui.card.image {
@@ -154,6 +154,6 @@
 .ui.card>.extra a:not(.ui),
 .ui.cards>.card>.extra a:not(.ui) 
 {
-  color: rgb(204, 194, 194);
+  color: rgb(60, 50, 50);
   font-size: 1.4rem;
 }

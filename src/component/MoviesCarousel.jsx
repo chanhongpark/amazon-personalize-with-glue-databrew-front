@@ -25,7 +25,10 @@ function MoviesCarousel() {
       const config_api_url = config.ApiUrl;
       const get_pop_movie_url = `${config_api_url}/recommendation/popularity`
       const get_per_movie_url = `${config_api_url}/recommendation/personalized/${userId}`
-  
+      // const get_pop_movie_url = `${config_api_url}/movie`
+      // const get_per_movie_url = `${config_api_url}/movie`
+
+      
       async function fetchData () {
         const response = await axios.get(
           get_pop_movie_url,);
@@ -65,8 +68,9 @@ function MoviesCarousel() {
                       controls={false}
                       light={false}
                       className='headermovie__video'
-                      url='https://www.youtube.com/watch?v=giXco2jaZ_4'
-                      config={{ youtube: { playerVars: { loop : 1, cc_load_policy : 0,  } } }}
+                      // url='https://www.youtube.com/watch?v=giXco2jaZ_4'
+                      url='https://www.youtube.com/watch?v=ODZMo8HXqwA'
+                      config={{ youtube: { playerVars: { loop : 1, cc_load_policy : 0, disablekb: 1, } } }}
         />
         <h1 className='headermovie__container-heading'>Top Gun: Maverick</h1>
         <p className='headermovie__container-overview'>

@@ -89,7 +89,7 @@ function MovieDetails({ id, locationState }) {
               <Placeholder.Line/>          
             </Placeholder>
           ) : (
-            <Card.Content>
+            <Card.Content style={{backgroundcolor : 'white', }}>
               <Card.Header>{movie.title}</Card.Header>
               <Card.Meta><Icon name='tag'/> {movie.genres[0].name}</Card.Meta>
               <Card.Description><Rating icon='star' defaultRating={movie.vote_average} maxRating={10} /></Card.Description>
