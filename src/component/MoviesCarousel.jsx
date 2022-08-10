@@ -71,7 +71,7 @@ function MoviesCarousel() {
             A gritty chronicle of the war against Colombia's infamously violent and powerful drug cartels.
         </p>
       </div>
-        <Container fluid style={{ marginTop: 20, }}>
+      <Container fluid style={{ marginTop: 20, }}>
         <Header as='h3' inverted>
           <Icon name='star' />
           <Header.Content>Popular movies
@@ -79,7 +79,7 @@ function MoviesCarousel() {
           </Header.Content>
         </Header>
         <MoviesCarouselPage items={popmovies} pageViewOrigin='Browse'/>
-        {/* <div class="ui divider"></div> */}
+        <div class="ui divider"></div>
         <Header as='h3' inverted>
           <Icon name='heart' />
           <Header.Content>Recommended movies
@@ -87,7 +87,7 @@ function MoviesCarousel() {
           </Header.Content>
         </Header>
         <MoviesCarouselPage items={permovies} pageViewOrigin='Browse'/>
-        {/* <NavLink to='/allmovie'><Icon name='caret square right outline'/>All Movie List</NavLink> */}
+
         <Button floated='right' inverted primary size='medium' as={Link} to='/allmovie'> 
           All Movie List 
           <Icon name='right arrow' />

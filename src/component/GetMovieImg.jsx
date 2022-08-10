@@ -21,9 +21,7 @@ function MoviePoster(id) {
     },[])
 
     return (
-        <img src = {'https://image.tmdb.org/t/p/'+ImgSize+'/'+Movie.poster_path}
-            // className='movieShowcase__container--movie-image'
-        />
+        <img src = {'https://image.tmdb.org/t/p/'+ImgSize+'/'+Movie.poster_path} />
     );
 }
 

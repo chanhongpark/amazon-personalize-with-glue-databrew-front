@@ -1,4 +1,4 @@
-// Override swiper styles
+/* Override swiper styles */
 .swiper-pagination {
   top: 0 !important;
   height: 1rem !important;
@@ -22,7 +22,7 @@
 
 .swiper-button-prev,
 .swiper-button-next {
-  /* transition: all 450ms !important; */
+  transition: all 450ms !important;
   color: rgb(251, 14, 14);
 }
 .swiper-button-prev:hover,
@@ -58,6 +58,10 @@
 }
 .movieShowcase__container::-webkit-scrollbar {
   display: none;
+}
+
+.movieShowcase__container:hover:hover{
+  transform: scale(1.1) !important;
 }
 
 .movieShowcase__container--movie:hover ~ .movieShowcase__container--movie {

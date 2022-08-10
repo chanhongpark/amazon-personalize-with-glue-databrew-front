@@ -19,7 +19,7 @@ import "swiper/css/navigation";
 import MoviePoster from './GetMovieImg'
 
 import "../styles.css";
-// import { Navigation, Pagination,Scrollbar, A11y } from "swiper";
+import { Navigation, Pagination,Scrollbar, A11y } from "swiper";
 import { useViewport } from '../hooks/useViewport'
 
 function MoviesCarouselPage({ items, pageViewOrigin, cardStyle }) {
@@ -51,11 +51,14 @@ function MoviesCarouselPage({ items, pageViewOrigin, cardStyle }) {
     
 
        return (
+        <>
+        {/* <h1 className='movieShowcase__heading'>Test</h1> */}
         <Swiper
-          // className='movieShowcase__container'
-          navigation={false}
+          className='mySwiper'
+          navigation={true}
           grabCursor={false}
           draggable={false}
+          modules={[Pagination, Navigation]}
           loop={true}
           loopAdditionalSlides={
             width >= 1378 ? 4 : width >= 998 ? 3 : width >= 625 ? 2 : 2
@@ -83,10 +86,11 @@ function MoviesCarouselPage({ items, pageViewOrigin, cardStyle }) {
           scrollbar={{ draggable: false, hide: true }}
           slideToClickedSlide={false}
           pagination={{ clickable: true }}
-      >
+        >
           {MakeSwipeSlide()}
          
         </Swiper>
+      </>
       );
     };
     return (
