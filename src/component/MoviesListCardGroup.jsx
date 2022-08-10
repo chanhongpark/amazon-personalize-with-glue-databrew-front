@@ -15,21 +15,8 @@ import { dispatchUserEvent } from '../util/Utils';
 // Don't forget to setyp required CSS!
 import "pure-react-carousel/dist/react-carousel.es.css";
 
-import { CarouselProvider, Image, Slide, Slider } from "pure-react-carousel";
-import CustomDotGroup from "./CustomDotGroup";
-import { Divider } from "semantic-ui-react";
-//import CarouselSwipe from './CarouselSwipe'
-
-// Import Swiper React components & Swiper styles
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 import MoviePoster from './GetMovieImg'
-
-//import "./styles.css";
-import { Navigation, Pagination } from "swiper";
+import "../styles.css";
 
 function MoviesListCardGroup({ items, pageViewOrigin, cardStyle }) {
     // const { state: ContextState } = useContext(AuthContext);
@@ -47,7 +34,7 @@ function MoviesListCardGroup({ items, pageViewOrigin, cardStyle }) {
           <Card
             key={movie.id}
             as={Link} to={{ pathname: `/movies/${movie.id}`, state:  {pageViewOrigin}  }}
-            style={cardStyle}
+            // style={cardStyle}
             // onClick={() => { trackEvent({ EVENT_TYPE: 'click', movieId: `${movie.id}` }); }}
             >
   

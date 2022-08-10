@@ -61,14 +61,20 @@ function MoviesCarousel() {
                       loop={true}
                       width='100%'
                       height='100%'
-                      volume={1}
                       muted={true}
+                      controls={false}
+                      light={false}
                       className='headermovie__video'
-                      url='https://vimeo.com/384025132'
+                      url='https://www.youtube.com/watch?v=giXco2jaZ_4'
+                      config={{ youtube: { playerVars: { loop : 1, cc_load_policy : 0,  } } }}
         />
-        <h1 className='headermovie__container-heading'>Narcos</h1>
+        <h1 className='headermovie__container-heading'>Top Gun: Maverick</h1>
         <p className='headermovie__container-overview'>
-            A gritty chronicle of the war against Colombia's infamously violent and powerful drug cartels.
+        After more than thirty years of service as one of the Navy’s top aviators, 
+        Pete “Maverick” Mitchell (Tom Cruise) is where he belongs, 
+        pushing the envelope as a courageous test pilot and dodging the advancement in rank that would 
+        ground him. When he finds himself training a detachment of Top Gun graduates for 
+        a specialized mission the likes of which no living pilot has ever seen, Maverick encounters Lt. 
         </p>
       </div>
       <Container fluid style={{ marginTop: 20, }}>

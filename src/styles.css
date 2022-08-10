@@ -152,7 +152,8 @@
 .ui.card>.content>.description,
 .ui.cards>.card>.content>.description,
 .ui.card>.extra a:not(.ui),
-.ui.cards>.card>.extra a:not(.ui) {
-  color: rgb(194, 185, 185);
+.ui.cards>.card>.extra a:not(.ui) 
+{
+  color: rgb(204, 194, 194);
   font-size: 1.4rem;
 }
