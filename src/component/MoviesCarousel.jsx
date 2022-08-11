@@ -80,6 +80,7 @@ function MoviesCarousel() {
         ground him. When he finds himself training a detachment of Top Gun graduates for 
         a specialized mission the likes of which no living pilot has ever seen, Maverick encounters Lt. 
         </p>
+        <div className='header__container--fadeBottom'></div>
       </div>
       <Container fluid style={{ marginTop: 20, }}>
         <Header as='h3' inverted>

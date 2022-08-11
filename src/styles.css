@@ -121,6 +121,32 @@
   font-size: 1.8rem;
 }
 
+@media ( max-width: 800px ) {
+    .headermovie {
+      padding-top: 0;
+      height: 32rem;
+    }
+    .headermovie__video {
+      top: -10px;
+    }
+
+    .headermovie__container {
+      padding-left: 1rem;
+    }
+    .headermovie__container-heading {
+      top: 7rem;
+      font-size: 3rem;
+    }
+
+    .headermovie__container-overview {
+      top: 8rem;
+      width: 25rem;
+      font-size: 1rem;
+      line-height: 1.0;
+
+    
+    }
+}
 
 .ui.card {
   display: inline-block;
@@ -155,5 +181,5 @@
 .ui.cards>.card>.extra a:not(.ui) 
 {
   color: rgb(60, 50, 50);
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
