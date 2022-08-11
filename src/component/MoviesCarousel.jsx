@@ -83,15 +83,14 @@ function MoviesCarousel() {
         <div className='header__container--fadeBottom'></div>
       </div>
       <Container fluid style={{ marginTop: 20, }}>
-        <Header as='h3' inverted>
+        <Header size='medium' inverted>
           <Icon name='star' />
           <Header.Content>Popular movies
           <Header.Subheader>10 MOST POPULAR MOVIES RIGHT NOW</Header.Subheader>
           </Header.Content>
         </Header>
         <MoviesCarouselPage items={popmovies} pageViewOrigin='Browse'/>
-        <div class="ui divider"></div>
-        <Header as='h3' inverted>
+        <Header size='medium' inverted>
           <Icon name='heart' />
           <Header.Content>Recommended movies
           <Header.Subheader>personalized movie recommendation</Header.Subheader>

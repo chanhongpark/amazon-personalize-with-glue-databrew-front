@@ -4,7 +4,8 @@ import axios from 'axios';
 
 import { AuthContext } from '../context/Auth.context';
 
-import { Image, Container } from 'semantic-ui-react'
+import { Image, Container, Form, Button } from 'semantic-ui-react'
+import '../styles.css';
 
 const initialState = {
   email: '',
@@ -58,49 +59,32 @@ const LoginForm = () => {
     </Container>
 
     <Container style={{ marginTop: 70 }} >
-    <form name="loginForm" onSubmit={onSubmit}>
-      
-      <div className="row">
-
-        <div className="col-sm-3 col-md-6">
-          <label htmlFor="email" >Username</label>
-        </div>
-        
-        <div className="col-sm-9 col-md-6">
+      <Form className='login-form' name="loginForm" onSubmit={onSubmit}>
+        <Form.Field >
+          <label >User Name</label>
           <input 
             type="text" 
             name="email" 
             onChange={e => setState({email: e.target.value})} 
             value={state.email} 
             placeholder="admin" 
+        />
+        </Form.Field>
+        <Form.Field className='login-form-field'>
+          <label>Password</label>
+          <input 
+            type="password" 
+            name="password" 
+            onChange={e => setState({password: e.target.value})} 
+            value={state.password} 
+            placeholder="admin" 
           />
-        </div>
-
-        <div className="col-sm-3 col-md-6">
-          <label htmlFor="password" value="admin">Password</label>
-        </div>
-        <div className="col-sm-9 col-md-6">
-            <input 
-              type="password" 
-              name="password" 
-              onChange={e => setState({password: e.target.value})} 
-              value={state.password} 
-              placeholder="admin" 
-            />
-        </div>
-
-        <div className="col-sm-3 col-md-6">
-        </div>
-        <div className="col-sm-9 col-md-6">
-          <input className="primary" type="submit" value="Login" />
-        </div>
-        
-      </div>
-
+        </Form.Field>
+        <Button type='submit' value="Login" >Login</Button>
+      </Form >
       { isLoginPending && <div>Please wait...</div> }
       { isLoggedIn && <div>Success.</div> }
       { loginError && <div>{loginError.message}</div> }
-    </form>
     </Container>
     </>
   )

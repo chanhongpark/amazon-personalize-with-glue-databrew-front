@@ -28,18 +28,16 @@ function Dashboard() {
                 <Menu.Item link onClick={onLogout}>Log out</Menu.Item>
                 </Menu.Menu>
             </Menu>
-            {/* <Container fluid> */}
-                <Route path='/' exact component={() => 
-                    <MoviesCarousel/>
-                }/>
-                <Route path='/allmovie' exact component={() => 
-                    <MoviesList/>
-                }/>
-                <Route path='/movies/:movieId' render={props => 
-                    <MovieDetails id={props.match.params.movieId} locationState={props.location.state}/>
-                }/>
-                {/* <Route path='/login' exact component={() => <Login />} /> */}
-            {/* </Container> */}
+            <Route path='/' exact component={() => 
+                <MoviesCarousel/>
+            }/>
+            <Route path='/allmovie' exact component={() => 
+                <MoviesList/>
+            }/>
+            <Route path='/movies/:movieId' render={props => 
+                <MovieDetails id={props.match.params.movieId} locationState={props.location.state}/>
+            }/>
+            {/* <Route path='/login' exact component={() => <Login />} /> */}
             </Router>
         </>
     );
