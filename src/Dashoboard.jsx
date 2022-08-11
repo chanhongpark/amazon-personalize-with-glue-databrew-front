@@ -28,7 +28,7 @@ function Dashboard() {
                 <Menu.Item link onClick={onLogout}>Log out</Menu.Item>
                 </Menu.Menu>
             </Menu>
-            <Container fluid>
+            {/* <Container fluid> */}
                 <Route path='/' exact component={() => 
                     <MoviesCarousel/>
                 }/>
@@ -39,7 +39,7 @@ function Dashboard() {
                     <MovieDetails id={props.match.params.movieId} locationState={props.location.state}/>
                 }/>
                 {/* <Route path='/login' exact component={() => <Login />} /> */}
-            </Container>
+            {/* </Container> */}
             </Router>
         </>
     );

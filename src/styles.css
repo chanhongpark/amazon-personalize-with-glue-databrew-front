@@ -120,31 +120,50 @@
   padding-top: 2.5rem;
   font-size: 1.8rem;
 }
+.headermovie__container--fadeBottom {
+  position: absolute;
+  bottom: 0;
+  height: 10rem;
+  width: 100%;
+
+  background-image: linear-gradient(
+    180deg,
+    transparent,
+    rgba(15, 15, 15, 0.61),
+    rgb(17, 17, 17),
+    rgb(17, 17, 17)
+  );
+}
+
+
 
 @media ( max-width: 800px ) {
     .headermovie {
       padding-top: 0;
-      height: 32rem;
+      height: 25rem;
     }
     .headermovie__video {
-      top: -10px;
+      top: -5px;
     }
 
     .headermovie__container {
       padding-left: 1rem;
+      left: 1rem;
     }
     .headermovie__container-heading {
-      top: 7rem;
+      top: 5rem;
+      left: 1rem;
       font-size: 3rem;
     }
-
     .headermovie__container-overview {
-      top: 8rem;
+      top: 6rem;
       width: 25rem;
+      left: 1rem;
       font-size: 1rem;
       line-height: 1.0;
-
-    
+    }
+    .headermovie__container--fadeBottom {
+         height: 4rem;
     }
 }
 
