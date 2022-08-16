@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom'
 import { AuthContext } from '../context/Auth.context.jsx';
 
 
-import { Container, Divider, Card, Placeholder, Button, Icon, Rating } from 'semantic-ui-react'
+import { Container, Divider, Card, Placeholder, Button, Icon, Rating, Image } from 'semantic-ui-react'
 
 import MovieCardImage from './MovieCardImage'
 import RecommendedMovieList from './RecommendationMovieList';
@@ -74,27 +74,29 @@ function MovieDetails({ id, locationState }) {
    
     return (
       <Container style={{ marginTop: 70 }}>
-        <Card key={movie.id} style={{ width: '50%', minHeight: 100, margin: 'auto' }}>
-          {loading ? (
+        {/* <Card key={movie.id} style={{ width: '50%', minHeight: 100, margin: 'auto' }}> */}
+        <Card style = {{width: '100%'}}>
+          {/* {loading ? (
             <Placeholder fluid style={{minHeight: 320}}>
               <Placeholder.Image/>
             </Placeholder>
           ) : 
           (
-            <MovieCardImage movieName={movie.title} size = "medium" minHeight={100} fontSize={48} imageUrl={'https://image.tmdb.org/t/p/w500/'+movie.poster_path}/>
-          )}
+            <Image floated='left' Size='large' src={ 'https://image.tmdb.org/t/p/w500/'+movie.poster_path} />
+          )} */}
           {loading ? (
             <Placeholder>
               <Placeholder.Line/>
               <Placeholder.Line/>          
             </Placeholder>
           ) : (
-            <Card.Content style={{backgroundcolor : 'white', }}>
+            <Card.Content  >
+              <Image size='medium' floated='left' src={ 'https://image.tmdb.org/t/p/w500/'+movie.poster_path} />
               <Card.Header>{movie.title}</Card.Header>
               <Card.Meta><Icon name='tag'/> {movie.genres[0].name}</Card.Meta>
-              <Card.Description><Rating icon='star' defaultRating={movie.vote_average} maxRating={10} /></Card.Description>
-              <Card.Header as="h1"> </Card.Header>
-              <Card.Description>{movie.overview}</Card.Description>
+              <Card.Meta><Rating icon='star' defaultRating={movie.vote_average} maxRating={10} /></Card.Meta>
+              {/* <Card.Header as="h1"> </Card.Header> */}
+              <Card.Meta>{movie.overview}</Card.Meta>
                 <Button onClick={() => { trackEvent({ EVENT_TYPE: 'click', movieId: `${movie.id}`, UserId:`${UserId}` }); }}>
                   Watch
                 </Button>
