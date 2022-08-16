@@ -7,6 +7,7 @@ import MoviesList from './component/MoviesList'
 import MovieDetails from './component/MovieDetails'
 import { AuthContext } from './context/Auth.context';
 import MoviesCarousel from './component/MoviesCarousel'
+import ScrollToTop from "./ScrollToTop";
 
 function Dashboard() {
 
@@ -19,6 +20,7 @@ function Dashboard() {
     return (
         <>
             <Router>
+            <ScrollToTop />
             <Menu fixed='top' color='black' inverted>
                 <Menu.Menu>
                 <Menu.Item header href='/'><Icon name='tv'/>DemoGo Prime</Menu.Item>
