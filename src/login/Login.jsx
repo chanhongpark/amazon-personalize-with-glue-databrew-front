@@ -58,7 +58,7 @@ const LoginForm = () => {
       <Image src="/image/pngwing.com.png" centered size='medium' />
     </Container>
 
-    <Container style={{ marginTop: 70 }} >
+    <Container style={{ marginTop: 70, width:400 }} >
       <Form className='login-form' name="loginForm" onSubmit={onSubmit}>
         <Form.Field >
           <label >User Name</label>
