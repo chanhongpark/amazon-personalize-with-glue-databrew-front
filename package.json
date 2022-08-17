@@ -28,7 +28,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "aws s3 sync ./build s3://demogo-react-hosting-rick --profile k-octank-user",
+    "deploy": "aws s3 sync ./build s3://personalize-webserver-working",
     "invalidate": "aws cloudfront create-invalidation --profile=k-octank-user --distribution-id EVHDSZDHSCT2A --paths / /index.html /manifest.json /favicon.ico"
   },
   "eslintConfig": {
