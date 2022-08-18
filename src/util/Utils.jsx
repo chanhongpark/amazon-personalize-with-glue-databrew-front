@@ -13,6 +13,7 @@ export async function dispatchUserEvent(data) {
         
         USER_ID: data['UserId'],
         ITEM_ID: data['movieId'] ?? '',
+        RATING: data['Rating'],
         TIMESTAMP: (Date.now()).toString(),
         EVENT_TYPE: data['EVENT_TYPE'] ?? '',
     }

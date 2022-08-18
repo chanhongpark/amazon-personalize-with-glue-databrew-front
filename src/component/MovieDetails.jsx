@@ -16,7 +16,6 @@ import RecommendedMovieList from './RecommendationMovieList';
 import { useTracking } from 'react-tracking';
 import { dispatchUserEvent } from '../util/Utils';
 
-
 // 영화 상세 페이지
 function MovieDetails({ id, locationState }) {
   const { state: ContextState, login } = useContext(AuthContext);
@@ -43,7 +42,7 @@ function MovieDetails({ id, locationState }) {
     const ApiKey ='07f9ef25b539558ed23c3b6752d61713'
     const Lang = 'en-US'
     const Tmdb_api = `https://api.themoviedb.org/3/movie/${id}?api_key=${ApiKey}&language=${Lang}`;
-   
+ 
     React.useEffect(() => {
       
       async function loadDealInfo() {
@@ -71,7 +70,13 @@ function MovieDetails({ id, locationState }) {
     const { Track, trackEvent } = useTracking({page: 'MoviesCarouselPage'}, {
       dispatch: (data) => dispatchUserEvent(data)
     });
-   
+    const [rating, setRating] = React.useState(0);
+    function handleChangeOnRate(e, { rating }) {
+      e.preventDefault();
+      console.log('🎂🎂🎂rating',rating)
+      setRating(rating);
+    }
+
     return (
       <Container style={{ marginTop: 70 }}>
         {/* <Card key={movie.id} style={{ width: '50%', minHeight: 100, margin: 'auto' }}> */}
@@ -94,10 +99,11 @@ function MovieDetails({ id, locationState }) {
               <Image size='medium' floated='left' src={ 'https://image.tmdb.org/t/p/w500/'+movie.poster_path} />
               <Card.Header>{movie.title}</Card.Header>
               <Card.Meta><Icon name='tag'/> {movie.genres[0].name}</Card.Meta>
-              <Card.Meta><Rating icon='star' defaultRating={movie.vote_average} maxRating={10} /></Card.Meta>
+              <Card.Meta><Rating icon='star' defaultRating={movie.vote_average} maxRating={10} disabled /></Card.Meta>
               {/* <Card.Header as="h1"> </Card.Header> */}
               <Card.Meta>{movie.overview}</Card.Meta>
-                <Button onClick={() => { trackEvent({ EVENT_TYPE: 'click', movieId: `${movie.id}`, UserId:`${UserId}` }); }}>
+              <Rating icon='heart' defaultRating={0} maxRating={10} onRate={handleChangeOnRate} />
+                <Button onClick={() => { trackEvent({ EVENT_TYPE: 'click', movieId: `${movie.id}`, UserId:`${UserId}`, Rating: `${rating}`}); }}>
                   Rating
                 </Button>
             </Card.Content>
