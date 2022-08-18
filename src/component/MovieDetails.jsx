@@ -29,8 +29,8 @@ function MovieDetails({ id, locationState }) {
   } = ContextState;
     const [movie, setMovie] = React.useState({});
     const [loading, setLoading] = React.useState(true);
-    const [recommendedMovies, setRecommendedMovies] = React.useState([]);
-    const [recommendedMovies2, setRecommendedMovies2] = React.useState([]);
+    // const [recommendedMovies, setRecommendedMovies] = React.useState([]);
+    // const [recommendedMovies2, setRecommendedMovies2] = React.useState([]);
     // const { state } = useContext(AuthContext);
 
     // config.ApiUrl need to be updated during Frontend set up lab.

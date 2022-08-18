@@ -1,10 +1,10 @@
-import React, {useContext, useRef, useState} from 'react';
+import React from 'react';
 // import { AuthContext } from '../context/Auth.context';
 import PropTypes from 'prop-types';
 
 import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
 
-import { Header, Card, Rating, Icon, Button } from 'semantic-ui-react'
+import { Card, Rating } from 'semantic-ui-react'
 
 import MovieCardImage from './MovieCardImage'
 
@@ -15,7 +15,6 @@ import { dispatchUserEvent } from '../util/Utils';
 // Don't forget to setyp required CSS!
 import "pure-react-carousel/dist/react-carousel.es.css";
 
-import MoviePoster from './GetMovieImg'
 import "../styles.css";
 
 function MoviesListCardGroup({ items, pageViewOrigin, cardStyle }) {
