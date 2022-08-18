@@ -98,7 +98,7 @@ function MovieDetails({ id, locationState }) {
               {/* <Card.Header as="h1"> </Card.Header> */}
               <Card.Meta>{movie.overview}</Card.Meta>
                 <Button onClick={() => { trackEvent({ EVENT_TYPE: 'click', movieId: `${movie.id}`, UserId:`${UserId}` }); }}>
-                  Watch
+                  Rating
                 </Button>
             </Card.Content>
           )}
