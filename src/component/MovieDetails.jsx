@@ -99,10 +99,10 @@ function MovieDetails({ id, locationState }) {
               <Image size='medium' floated='left' src={ 'https://image.tmdb.org/t/p/w500/'+movie.poster_path} />
               <Card.Header>{movie.title}</Card.Header>
               <Card.Meta><Icon name='tag'/> {movie.genres[0].name}</Card.Meta>
-              <Card.Meta><Rating icon='star' defaultRating={movie.vote_average} maxRating={10} disabled /></Card.Meta>
+              <Card.Meta><Rating icon='star' defaultRating={movie.vote_average /2 } maxRating={5} disabled /></Card.Meta>
               {/* <Card.Header as="h1"> </Card.Header> */}
               <Card.Meta>{movie.overview}</Card.Meta>
-              <Rating icon='heart' defaultRating={0} maxRating={10} onRate={handleChangeOnRate} />
+              <Rating icon='heart' defaultRating={0} maxRating={5} onRate={handleChangeOnRate} />
                 <Button onClick={() => { trackEvent({ EVENT_TYPE: 'click', movieId: `${movie.id}`, UserId:`${UserId}`, Rating: `${rating}`}); }}>
                   Rating
                 </Button>
