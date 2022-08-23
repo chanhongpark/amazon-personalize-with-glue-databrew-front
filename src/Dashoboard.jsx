@@ -23,7 +23,7 @@ function Dashboard() {
             <ScrollToTop />
             <Menu fixed='top' color='black' inverted>
                 <Menu.Menu>
-                <Menu.Item header href='/'><Icon name='tv'/>DemoGo Prime</Menu.Item>
+                <Menu.Item header href='/'><Icon name='tv'/>LG Movie</Menu.Item>
                 </Menu.Menu>
                 <Menu.Menu position='right'>
                 <Menu.Item link>Generate</Menu.Item>
