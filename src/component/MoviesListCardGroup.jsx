@@ -41,7 +41,7 @@ function MoviesListCardGroup({ items, pageViewOrigin, cardStyle }) {
             />
             <Card.Content>
               {movie.score? <Card.Meta as="h1">{movie.name}</Card.Meta> : <Card.Header>{movie.name}</Card.Header> }
-              <Card.Description><Rating icon='star' defaultRating={movie.rating/2} maxRating={5} disabled /></Card.Description>
+              <Card.Description><Rating icon='star' defaultRating={movie.rating} maxRating={5} disabled /></Card.Description>
               {/* <Card.Description><Icon name='tag'/> {movie.category}</Card.Description> */}
               
                   {movie.category}
