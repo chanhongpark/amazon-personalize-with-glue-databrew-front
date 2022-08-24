@@ -33,9 +33,9 @@ function MoviesList() {
     }, []);
     
   
-    document.title = 'DemoGo Prime';
+    document.title = 'Pebble Moive';
     return (
-      <Container style={{ marginTop: 70 }}>
+      <Container style={{ marginTop: 100 }}>
         <NavLink to='/'><Icon name='arrow circle left'/>Go to Home</NavLink>
         <MoviesListCardGroup items={movies} pageViewOrigin='Browse'/>
       </Container>
