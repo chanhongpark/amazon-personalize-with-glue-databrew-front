@@ -16,8 +16,11 @@ import RecommendedMovieList from './RecommendationMovieList';
 import { useTracking } from 'react-tracking';
 import { dispatchUserEvent } from '../util/Utils';
 
+import { useHistory } from 'react-router-dom';
+
 // 영화 상세 페이지
 function MovieDetails({ id, locationState }) {
+  let history = useHistory();
   const { state: ContextState, login } = useContext(AuthContext);
   const {
     isLoginPending,
@@ -110,9 +113,15 @@ function MovieDetails({ id, locationState }) {
           )}
           </Card>
           <Button floated='right' inverted primary size='medium' as={Link} to='/'> 
-            Back to Movie list
-            <Icon name='left arrow' />
+            <Icon name='chevron circle up' />
+            Go to Home
           </Button>
+          <Button floated='left' inverted primary size='medium' 
+          onClick={() => history.goBack()} > 
+            <Icon name='arrow circle left' />
+            back 
+          </Button>
+
       </Container>
     );
   };
