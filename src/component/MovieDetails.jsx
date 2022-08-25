@@ -169,7 +169,8 @@ function MovieDetails({ id, locationState }) {
     const closeModal = () => {
       setModalOpen(false);
     };
-
+    const fontTitleSize = 40;
+    const fontTagSize = 18;
     return (
       <Container style={{ marginTop: 100 }}>
         {/* <Card key={movie.id} style={{ width: '50%', minHeight: 100, margin: 'auto' }}> */}
@@ -189,39 +190,38 @@ function MovieDetails({ id, locationState }) {
             </Placeholder>
           ) : (
             <Card.Content  >
-              <Image size='medium' floated='left' src={ 'https://image.tmdb.org/t/p/w500/'+movie.poster_path} />
-              <Card.Header style={{fontSize:35}}>{movie.title}</Card.Header>
+              <Image size='large' floated='left' src={ 'https://image.tmdb.org/t/p/w500/'+movie.poster_path} />
+              <Card.Header style={{fontSize:fontTitleSize}}>{movie.title}</Card.Header>
               {/*<Card.Meta><Icon name='tag'/> {movie.genres[0].name}</Card.Meta>*/}
 	            {movie.genres.length !== 0 && 
-                (<Card.Meta>{movie.genres.length === 1 ? <Icon name='tag'/>:<Icon name='tags'/> }
+                (<Card.Meta style={{fontSize:fontTitleSize-20}}>{movie.genres.length === 1 ? <Icon name='tag'/>:<Icon name='tags'/> }
                   {movie.genres.map((genre)=>{
                     return <span key={genre.name}>{` #${genre.name}`}</span>
                   })}
                 </Card.Meta>)}
               {creditsInfo.length !== 0 && 
-                (<Card.Meta><Icon name='users'/>
+                (<Card.Meta  style={{fontSize:fontTagSize}}><Icon name='users'/>
                   {creditsInfo.map((cast,idx)=>{
                     return <span key={idx}>{` #${cast.name}`}</span>
                   })}
                   </Card.Meta>)}
 	            {movie.release_date.length !== 0 && 
-                (<Card.Meta><Icon name='time'/>{` ${movie.release_date}`}</Card.Meta>)}
+                (<Card.Meta  style={{fontSize:fontTagSize}}><Icon name='time'/>{` ${movie.release_date}`}</Card.Meta>)}
               {movie.tagline.length !== 0 && 
-                (<Card.Meta><Icon name='file archive outline'/>{` ${movie.tagline}`}</Card.Meta>)}
+                (<Card.Meta  style={{fontSize:fontTagSize}}><Icon name='file archive outline'/>{` ${movie.tagline}`}</Card.Meta>)}
               
-              <Card.Meta><Icon name='chart bar'/><Rating icon='star' defaultRating={Math.round(Math.round(movie.vote_average)/2) } maxRating={5} disabled />({Math.round(movie.vote_average*10)/20}/5)</Card.Meta>
-              <Card.Header as="h1"> </Card.Header>
+              <Card.Meta  style={{fontSize:fontTagSize}}><Icon name='chart bar'/><Rating icon='star' defaultRating={Math.round(Math.round(movie.vote_average)/2) } maxRating={5} disabled />({Math.round(movie.vote_average*10)/20}/5)</Card.Meta>
               <Card.Header as="h1"> </Card.Header>
               <Card.Meta>{movie.overview}</Card.Meta>
               <Card.Header as="h1"> </Card.Header>
               
               {(youtubeInfo.length !== 0) &&
-                <Button onClick={onClickWatchButton} primary>Watch Trailer&nbsp;&nbsp;<Icon name='play circle outline'/></Button>}
+                <Button style={{fontSize:fontTagSize}} onClick={onClickWatchButton} primary>Watch Trailer&nbsp;&nbsp;<Icon name='play circle outline'/></Button>}
 	              <MoviePlayer officialYoutube={officialYoutube} open={modalOpen} close={closeModal} />
               <Card.Header as="h1"> </Card.Header>
-              <Card.Header as="h1"> </Card.Header>
+              
               <Rating icon='heart' defaultRating={0} maxRating={5} onRate={handleChangeOnRate} />
-                <Button onClick={() => { trackEvent({ EVENT_TYPE: 'click', movieId: `${movie.id}`, UserId:`${UserId}`, Rating: `${rating}`}); }}>
+                <Button style={{fontSize:fontTagSize}} onClick={() => { trackEvent({ EVENT_TYPE: 'click', movieId: `${movie.id}`, UserId:`${UserId}`, Rating: `${rating}`}); }}>
                   Rating
                 </Button>
             </Card.Content>
