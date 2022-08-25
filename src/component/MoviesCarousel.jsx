@@ -55,9 +55,10 @@ function MoviesCarousel() {
     }, []);
     
   
-    document.title = 'DemoGo Prime';
+    document.title = 'Pebble Moive';
     return (
       <>
+      {/* 
       <div className='headermovie' >
         <ReactPlayer
                       playing={true}
@@ -81,8 +82,18 @@ function MoviesCarousel() {
         a specialized mission the likes of which no living pilot has ever seen, Maverick encounters Lt. 
         </p>
         <div className='header__container--fadeBottom'></div>
-      </div>
-      <Container fluid style={{ marginTop: 20, }}>
+      </div> 
+      */}
+      <Container fluid style={{ marginTop: 100, }}>
+        
+        <Header size='medium' inverted>
+          <Icon name='heart' />
+          <Header.Content>Recommended movies for <span style={{color:'red', fontSize:24}}>{userId===0?'admin':`admin${userId}`}</span>
+          <Header.Subheader>personalized movie recommendation</Header.Subheader>
+          </Header.Content>
+        </Header>
+        <MoviesCarouselPage items={permovies} pageViewOrigin='Browse'/>
+
         <Header size='medium' inverted>
           <Icon name='star' />
           <Header.Content>Popular movies
@@ -90,13 +101,6 @@ function MoviesCarousel() {
           </Header.Content>
         </Header>
         <MoviesCarouselPage items={popmovies} pageViewOrigin='Browse'/>
-        <Header size='medium' inverted>
-          <Icon name='heart' />
-          <Header.Content>Recommended movies
-          <Header.Subheader>personalized movie recommendation</Header.Subheader>
-          </Header.Content>
-        </Header>
-        <MoviesCarouselPage items={permovies} pageViewOrigin='Browse'/>
 
         <Button floated='right' inverted primary size='medium' as={Link} to='/allmovie'> 
           All Movie List 

@@ -12,23 +12,25 @@ import Login from './login/Login';
 
 
 function App() {  
-  const { state } = useContext(AuthContext);
-  console.log("state.isLoggedIn: ",state.isLoggedIn)
-  console.log("state.username: ",state.username)
-  console.log("state.userId: ",state.userId)
+  const { state } = useContext(AuthContext);    
+  console.log("[App] state.isLoggedIn: ",state.isLoggedIn)
+  console.log("[App] state.username: ",state.username)
+  console.log("[App] state.userId: ",state.userId)
 
-  document.title = 'Demogo Prime';
+  document.title = 'Pebble Moive';
   if (!state.isLoggedIn){
+    console.log("🤢🤢🤢🤢🤢 login failed")
     return(
       <Login />
     )
   } 
   else{
+    console.log("❤🤣🤣😂❤❤❤❤❤ login success")
     return  (
       <div className='App'>
        <Dashboard />
       </div>
-  ); 
+    ); 
   }
 };
 

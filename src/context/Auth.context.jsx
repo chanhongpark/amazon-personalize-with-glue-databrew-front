@@ -9,11 +9,13 @@ const initialState = {
   isLoginPending: false,
   loginError: null,
   username: "",
-  userId: ""
+  userId: "",
+  maxAdmin:10
 }
 
 export const ContextProvider = props => {
   const [state, setState] = useSetState(initialState);
+  console.log("[ContextProvider] useSetState(initialState) ==========>>>");
 
   const setLoginPending = (isLoginPending) => setState({isLoginPending});
   const setLoginSuccess = (isLoggedIn) => setState({isLoggedIn});
@@ -22,6 +24,7 @@ export const ContextProvider = props => {
   const setUserId = (userId) => setState({userId});
 
   const login = (email, password, id) => {
+    console.log("[ContextProvider] login() : ",email, password, id);
     setLoginPending(true);
     setLoginSuccess(false);
     setLoginError(null);
@@ -32,6 +35,7 @@ export const ContextProvider = props => {
       setLoginPending(false);
 
       if (!error) {
+        console.log("[ContextProvider] setLoginSuccess(true)");
         setLoginSuccess(true);
         setUserName(email);
         // (email === "admin")? setUserId("1") : setUserId("4");
@@ -42,11 +46,18 @@ export const ContextProvider = props => {
   }
 
   const logout = () => {
+    console.log("[ContextProvider] logout() : ");
     setLoginPending(false);
     setLoginSuccess(false);
     setUserName("");
     setUserId("");
     setLoginError(null);
+  }
+
+  const changeAdmin = (newAdmin, newId) => {
+    console.log("[ContextProvider] changeAdmin() : ",newAdmin, newId);
+    setUserName(newAdmin);
+    setUserId(newId);
   }
 
   return (
@@ -55,6 +66,7 @@ export const ContextProvider = props => {
         state,
         login,
         logout,
+        changeAdmin,
       }}
     >
       {props.children}
@@ -62,17 +74,19 @@ export const ContextProvider = props => {
   );
 // };
 
-// login
-async function fetchLogin (email, password, id, callback) {
-  const ReqAuthUrl = `https://hu63hd8u19.execute-api.ap-northeast-2.amazonaws.com/prod/user/${email}`
-  const response = await axios.get(ReqAuthUrl,);
-  console.log('🎄🎄🎄',(response))
-  console.log('✔✔✔✔✔✔',(response.data[0].password))
+  // login
+  async function fetchLogin (email, password, id, callback) {
+    const ReqAuthUrl = `https://hu63hd8u19.execute-api.ap-northeast-2.amazonaws.com/prod/user/${email}`
+    const response = await axios.get(ReqAuthUrl,);
+    
+    console.log('fetchLogin() ⏩⏩⏩⏩⏩⏩⏩ passwd',password)
+    console.log('fetchLogin() Request email',email)
+    console.log('fetchLogin() response 🎄🎄🎄',(response))
+    console.log('fetchLogin() ⏪⏪⏪⏪⏪ passwd',(response.data[0].password))
 
-  console.log('Request email',email)
-  const getpwd = response.data[0].password;
-      // const username = result.find( ({ name }) => name === 'admin' );
-  console.log("getpwd: ", getpwd)
+    const getpwd = response.data[0].password;
+        // const username = result.find( ({ name }) => name === 'admin' );
+    console.log("getpwd: ", getpwd)
 
     if (password === getpwd) {
       setUserId(response.data[0].userId);
@@ -82,5 +96,5 @@ async function fetchLogin (email, password, id, callback) {
     else {
       return callback(new Error('Invalid email and password'));
     }
-}
+  }
 }
