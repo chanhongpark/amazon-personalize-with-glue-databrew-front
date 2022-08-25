@@ -65,11 +65,11 @@ function MoviePlayer(props) {
             playing={true} 
             loop={true} />
           </main>
-          <footer>
+          {/* <footer>
             <button className="close" onClick={close}>
               close
             </button>
-          </footer>
+          </footer> */}
         </section>
       ) : null}
     </div>
