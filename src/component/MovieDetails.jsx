@@ -37,6 +37,9 @@ function MovieDetails({ id, locationState }) {
     const [youtubeInfo, setYoutubeInfo] = React.useState([]);  // response.data.results
     const [youtubeLoading, setYoutubeLoading] = React.useState(true);
     const [officialYoutube, setOfficialYoutube] = React.useState({}); 
+
+    const [creditsInfo, setCreditsInfo] = React.useState([]);  // response.data
+    
     // config.ApiUrl need to be updated during Frontend set up lab.
     const config_api_url = config.ApiUrl;
   
@@ -45,10 +48,11 @@ function MovieDetails({ id, locationState }) {
     const a_movie_api = `${get_a_movie_url}/${id}`
 
     const ApiKey ='07f9ef25b539558ed23c3b6752d61713'
-    const Lang = 'en-US'
-    // const Lang = 'ko-KR'
+    // const Lang = 'en-US'
+    const Lang = 'ko-KR'
     const Tmdb_api = `https://api.themoviedb.org/3/movie/${id}?api_key=${ApiKey}&language=${Lang}`;
     const Tmdb_api_getVideo = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${ApiKey}`;
+    const Tmdb_api_getCredits = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${ApiKey}`;
     // const Tmdb_api_getVideo = `https://api.themoviedb.org/discover/movie/?certification_country=US&certification=R&sort_by=vote_average.desc`;
 
     React.useEffect(() => {
@@ -95,8 +99,23 @@ function MovieDetails({ id, locationState }) {
         setOfficialYoutube(officialVideo);
         setYoutubeLoading(false);
       };
+
+      // const [creditsInfo, setCreditsInfo] = React.useState([]);  // response.data
+      async function loadCreditsInfo() {
+        console.log('[MovieDetails] (loadCreditsInfo).........');
+        const response = await axios.get(
+          Tmdb_api_getCredits,
+        );
+
+        console.log('[MovieDetails] (loadCreditsInfo) response : ',(response));
+        console.log('[MovieDetails] (loadCreditsInfo) response : ',(response.data.cast));
+        setCreditsInfo((response.data.cast.slice(0,4)));
+
+      };
+
       loadDealInfo();
       loadYoutubeInfo();
+      loadCreditsInfo()
   
       return () => {
         setMovie({});
@@ -104,6 +123,7 @@ function MovieDetails({ id, locationState }) {
         setYoutubeInfo([]);
         setYoutubeLoading(true);
         setOfficialYoutube({});
+        setCreditsInfo([]);
       };
     }, [id, locationState]);
 
@@ -159,7 +179,7 @@ function MovieDetails({ id, locationState }) {
           (
             <Image floated='left' Size='large' src={ 'https://image.tmdb.org/t/p/w500/'+movie.poster_path} />
           )} */}
-          {loading || youtubeLoading? (
+          {(loading || youtubeLoading)? (
             <Placeholder>
               <Placeholder.Line/>
               <Placeholder.Line/>          
@@ -170,17 +190,23 @@ function MovieDetails({ id, locationState }) {
               <Card.Header style={{fontSize:35}}>{movie.title}</Card.Header>
               {/*<Card.Meta><Icon name='tag'/> {movie.genres[0].name}</Card.Meta>*/}
 	            {movie.genres.length !== 0 && 
-                (<Card.Meta><Icon name='tag'/> 
+                (<Card.Meta>{movie.genres.length === 1 ? <Icon name='tag'/>:<Icon name='tags'/> }
                   {movie.genres.map((genre)=>{
-                    return <span key={genre.name}>{`#${genre.name} `}</span>
+                    return <span key={genre.name}>{` #${genre.name}`}</span>
                   })}
                 </Card.Meta>)}
+              {creditsInfo.length !== 0 && 
+                (<Card.Meta><Icon name='users'/>
+                  {creditsInfo.map((cast,idx)=>{
+                    return <span key={idx}>{` #${cast.name}`}</span>
+                  })}
+                  </Card.Meta>)}
 	            {movie.release_date.length !== 0 && 
-                (<Card.Meta><Icon name='time'/>{movie.release_date}</Card.Meta>)}
+                (<Card.Meta><Icon name='time'/>{` ${movie.release_date}`}</Card.Meta>)}
               {movie.tagline.length !== 0 && 
-                (<Card.Meta><Icon name='map outline'/>{movie.tagline}</Card.Meta>)}
+                (<Card.Meta><Icon name='file archive outline'/>{` ${movie.tagline}`}</Card.Meta>)}
               
-              <Card.Meta><Rating icon='star' defaultRating={Math.round(Math.round(movie.vote_average)/2) } maxRating={5} disabled />({Math.round(movie.vote_average*10)/10}/10)</Card.Meta>
+              <Card.Meta><Icon name='chart bar'/><Rating icon='star' defaultRating={Math.round(Math.round(movie.vote_average)/2) } maxRating={5} disabled />({Math.round(movie.vote_average*10)/20}/5)</Card.Meta>
               <Card.Header as="h1"> </Card.Header>
               <Card.Header as="h1"> </Card.Header>
               <Card.Meta>{movie.overview}</Card.Meta>
@@ -189,8 +215,6 @@ function MovieDetails({ id, locationState }) {
               {(youtubeInfo.length !== 0) &&
                 <Button onClick={onClickWatchButton} primary>Watch Trailer&nbsp;&nbsp;<Icon name='play circle outline'/></Button>}
 	              <MoviePlayer officialYoutube={officialYoutube} open={modalOpen} close={closeModal} />
-                      {/* 팝업창입니다. 쉽게 만들 수 있어요. 같이 만들어봐요!
-                </MoviePlayer> */}
               <Card.Header as="h1"> </Card.Header>
               <Card.Header as="h1"> </Card.Header>
               <Rating icon='heart' defaultRating={0} maxRating={5} onRate={handleChangeOnRate} />
