@@ -204,15 +204,9 @@ function MovieDetails({ id, locationState }) {
           )}
 	  
           </Card>
-<<<<<<< HEAD
           <Button floated='right' inverted primary size='medium' as={Link} to='/'> 
             <Icon name='chevron circle up' />
             Go to Home
-=======
-          <Button floated='right' inverted secondary size='medium' as={Link} to='/'> 
-            Back to Movie list
-          <Icon name='left arrow' />
->>>>>>> 40933d87c58f29e894154138ded04a65172ba9ca
           </Button>
           <Button floated='left' inverted primary size='medium' 
           onClick={() => history.goBack()} > 
