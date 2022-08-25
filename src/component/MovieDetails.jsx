@@ -36,7 +36,7 @@ function MovieDetails({ id, locationState }) {
 
     const [youtubeInfo, setYoutubeInfo] = React.useState([]);  // response.data.results
     const [youtubeLoading, setYoutubeLoading] = React.useState(true);
-    const [officailYoutube, setOfficailYoutube] = React.useState({}); 
+    const [officialYoutube, setOfficialYoutube] = React.useState({}); 
     // config.ApiUrl need to be updated during Frontend set up lab.
     const config_api_url = config.ApiUrl;
   
@@ -92,7 +92,7 @@ function MovieDetails({ id, locationState }) {
             }
           }  
         }
-        setOfficailYoutube(officialVideo);
+        setOfficialYoutube(officialVideo);
         setYoutubeLoading(false);
       };
       loadDealInfo();
@@ -103,7 +103,7 @@ function MovieDetails({ id, locationState }) {
         setLoading(true);
         setYoutubeInfo([]);
         setYoutubeLoading(true);
-        setOfficailYoutube({});
+        setOfficialYoutube({});
       };
     }, [id, locationState]);
 
@@ -130,10 +130,10 @@ function MovieDetails({ id, locationState }) {
       // console.log(`[MovieDetails] (onClickWatchButton) EVENT_TYPE: 'click', movieId: ${movie.id}, UserId:${UserId}`);
       // trackEvent({ EVENT_TYPE: 'click', movieId: `${movie.id}`, UserId:`${UserId}` }); 
       
-      console.log(`[MovieDetails]  (onClickWatchButton) key: ${officailYoutube.key}`);
-      console.log(`[MovieDetails]  (onClickWatchButton) name: ${officailYoutube.name}`);
-      console.log(`[MovieDetails]  (onClickWatchButton) size: ${officailYoutube.size}`);
-      console.log(`[MovieDetails]  (onClickWatchButton) type: ${officailYoutube.type}`);
+      console.log(`[MovieDetails]  (onClickWatchButton) key: ${officialYoutube.key}`);
+      console.log(`[MovieDetails]  (onClickWatchButton) name: ${officialYoutube.name}`);
+      console.log(`[MovieDetails]  (onClickWatchButton) size: ${officialYoutube.size}`);
+      console.log(`[MovieDetails]  (onClickWatchButton) type: ${officialYoutube.type}`);
 
       setModalOpen(true);
     }
@@ -188,7 +188,10 @@ function MovieDetails({ id, locationState }) {
               
               {(youtubeInfo.length !== 0) &&
                 <Button onClick={onClickWatchButton} primary>Watch Trailer&nbsp;&nbsp;<Icon name='play circle outline'/></Button>}
-	            <Card.Header as="h1"> </Card.Header>
+	              <MoviePlayer officialYoutube={officialYoutube} open={modalOpen} close={closeModal} />
+                      {/* 팝업창입니다. 쉽게 만들 수 있어요. 같이 만들어봐요!
+                </MoviePlayer> */}
+              <Card.Header as="h1"> </Card.Header>
               <Card.Header as="h1"> </Card.Header>
               <Rating icon='heart' defaultRating={0} maxRating={5} onRate={handleChangeOnRate} />
                 <Button onClick={() => { trackEvent({ EVENT_TYPE: 'click', movieId: `${movie.id}`, UserId:`${UserId}`, Rating: `${rating}`}); }}>

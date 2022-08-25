@@ -7,10 +7,10 @@ import ReactPlayer from 'react-player'
 
 // function MoviePlayer(){
 function MoviePlayer(props) {
-  //  <MoviePlayer officailYoutube={officailYoutube} open={modalOpen} close={closeModal}>
-  const  {officailYoutube, open, close} = props; 
+  //  <MoviePlayer officialYoutube={officialYoutube} open={modalOpen} close={closeModal}>
+  const  {officialYoutube, open, close} = props; 
  
-  console.log("[MoviePlayer] from props youtubeInfo",officailYoutube);
+  console.log("[MoviePlayer] from props youtubeInfo",officialYoutube);
   // id: "5b6b42da0e0a267eed126e2b"
   // iso_639_1: "en"
   // iso_3166_1: "US"
@@ -21,13 +21,13 @@ function MoviePlayer(props) {
   // site: "YouTube"
   // size: 1080
   // type: "Trailer"
-  console.log(`[MoviePlayer] name: ${officailYoutube.name}`);
-  console.log(`[MoviePlayer] key: ${officailYoutube.key}`);
-  console.log(`[MoviePlayer] size: ${officailYoutube.size}`);
+  console.log(`[MoviePlayer] name: ${officialYoutube.name}`);
+  console.log(`[MoviePlayer] key: ${officialYoutube.key}`);
+  console.log(`[MoviePlayer] size: ${officialYoutube.size}`);
   console.log(`[MoviePlayer] open: ${typeof open}`);
   console.log(`[MoviePlayer] close: ${typeof close}`);
 
-  const key = officailYoutube.key;
+  const key = officialYoutube.key;
   const url =  `https://www.youtube.com/watch?v=${key}`;
   console.log("[MoviePlayer] url :", url);
   
@@ -50,7 +50,7 @@ function MoviePlayer(props) {
       {open ? (
         <section>
           <header>
-            {officailYoutube.name}
+            {officialYoutube.name}
             <button className="close" onClick={close}>
               &times;
             </button>
