@@ -66,9 +66,13 @@ export const ContextProvider = props => {
 async function fetchLogin (email, password, id, callback) {
   const ReqAuthUrl = `https://hu63hd8u19.execute-api.ap-northeast-2.amazonaws.com/prod/user/${email}`
   const response = await axios.get(ReqAuthUrl,);
-  console.log('🎄🎄🎄',(response))
-  console.log('✔✔✔✔✔✔',(response.data[0].password))
-
+  
+  if(response.data == '')
+  { 
+    console.log('🎄non user or invalid pwd',(response))    
+    return callback(new Error('Invalid email and password'));
+  }
+ 
   console.log('Request email',email)
   const getpwd = response.data[0].password;
       // const username = result.find( ({ name }) => name === 'admin' );
