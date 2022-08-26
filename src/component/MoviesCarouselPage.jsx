@@ -26,7 +26,7 @@ function MoviesCarouselPage({ items, pageViewOrigin, cardStyle }) {
     // const { state: ContextState } = useContext(AuthContext);
     // const {userId} = ContextState;
 
-    
+
     const { Track, trackEvent } = useTracking({page: 'MoviesCarouselPage'}, {
       dispatch: (data) => dispatchUserEvent(data)
     });
@@ -39,7 +39,8 @@ function MoviesCarouselPage({ items, pageViewOrigin, cardStyle }) {
             className={'movieShowcase__container--movie' }
            >
             <Link to={{ pathname: `/movies/${movie.id}`, state:  {pageViewOrigin}  }}>
-              <MoviePoster id = {movie.id} />
+              {/* <MoviePoster id = {movie.id} /> */}
+              <img src = {movie.imageUrl} />
             </Link>
           </SwiperSlide>)
         )
