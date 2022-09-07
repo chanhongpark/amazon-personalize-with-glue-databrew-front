@@ -10,7 +10,7 @@ import MoviesCarousel from './component/MoviesCarousel'
 // import MoviePopFirst from './component/MoviePopFirst';
 // import MoviePerFirst from './component/MoviePerFirst';
 import ScrollToTop from "./ScrollToTop";
-import { useViewport } from '../hooks/useViewport'
+import { useViewport } from './hooks/useViewport'
 
 function Dashboard() {
     const { changeAdmin } = useContext(AuthContext);
@@ -54,7 +54,7 @@ function Dashboard() {
     console.log("[login]  windowDimensions", windowDimensions);
     console.log("[login]  width, height", width, height);
 
-    
+
     // export type IconSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
     // export type IconCorner = 'bottom right' | 'top right' | 'top left' | 'bottom left'
     const iconSize = "large";
