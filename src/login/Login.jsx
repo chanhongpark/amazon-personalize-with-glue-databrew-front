@@ -4,8 +4,9 @@ import { useSetState } from 'react-use';
 
 import { AuthContext } from '../context/Auth.context';
 
-import { Image, Container, Form, Button } from 'semantic-ui-react'
+import { Image, Container, Form, Button, Grid } from 'semantic-ui-react'
 import '../styles.css';
+import { useViewport } from '../hooks/useViewport'
 
 const initialState = {
   email: '',
@@ -72,17 +73,30 @@ const LoginForm = () => {
   // Hook... useRef
   const adminRef = useRef(null); // <select ref={dayRef}/>
 
+  const [windowDimensions] = useViewport()
+  const { width, height } = windowDimensions
+
+  console.log("[login]  windowDimensions", windowDimensions);
+  console.log("[login]  width, height", width, height);
+
   return (
     <>
+    <Grid verticalAlign='middle' columns={(width > 700)? 2:1} centered >
+    <Grid.Column>
+
     <Container style={{ marginTop: 70 }} textAlign='center' >
 
       <h1> Welecom to Pebble Movie Recommendation</h1>
     </Container>
-    <Container style={{ marginTop: 70 }} textAlign='center' >
-      <Image src="/image/pngwing.com.png" centered size='small' />
+    <Container style={{ marginTop: 70 }} fluid>
+      <Image src="/image/pngwing.com.png" centered size={(height>500)?'medium':'small' }/>
     </Container>
 
-    <Container style={{ marginTop: 70, width:400 }} >
+    </Grid.Column>
+
+    <Grid.Column>
+    
+    <Container style={{ marginTop: 70, width:'80%' }} >
       <Form className='login-form' name="loginForm" onSubmit={onSubmit}>
       <Form.Field >
           <label >Selcet Admin</label>
@@ -120,6 +134,10 @@ const LoginForm = () => {
       { isLoggedIn && <div>Success.</div> }
       { loginError && <div>{loginError.message}</div> }
     </Container>
+    </Grid.Column>
+    </Grid>
+    
+
     </>
   )
 }

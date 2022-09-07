@@ -84,12 +84,12 @@ function MoviesCarousel() {
         <div className='header__container--fadeBottom'></div>
       </div> 
       */}
-      <Container fluid style={{ marginTop: 100, }}>
+      <Container fluid style={{ marginTop: 0, }}>
         
         <Header size='medium' inverted>
           <Icon name='heart' />
           <Header.Content>Recommended movies for <span style={{color:'red', fontSize:24}}>{userId===0?'admin':`admin${userId}`}</span>
-          <Header.Subheader>personalized movie recommendation</Header.Subheader>
+          {/* <Header.Subheader>personalized movie recommendation</Header.Subheader> */}
           </Header.Content>
         </Header>
         <MoviesCarouselPage items={permovies} pageViewOrigin='Browse'/>
@@ -97,7 +97,7 @@ function MoviesCarousel() {
         <Header size='medium' inverted>
           <Icon name='star' />
           <Header.Content>Popular movies
-          <Header.Subheader>10 MOST POPULAR MOVIES RIGHT NOW</Header.Subheader>
+          {/* <Header.Subheader>10 MOST POPULAR MOVIES RIGHT NOW</Header.Subheader> */}
           </Header.Content>
         </Header>
         <MoviesCarouselPage items={popmovies} pageViewOrigin='Browse'/>

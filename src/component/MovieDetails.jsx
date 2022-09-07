@@ -19,6 +19,8 @@ import MoviePlayer from './MoviePlayer';
 
 
 import { useHistory } from 'react-router-dom';
+import { useViewport } from '../hooks/useViewport'
+
 
 // 영화 상세 페이지
 function MovieDetails({ id, locationState }) {
@@ -51,8 +53,8 @@ function MovieDetails({ id, locationState }) {
     const a_movie_api = `${get_a_movie_url}/${id}`
 
     const ApiKey ='07f9ef25b539558ed23c3b6752d61713'
-    // const Lang = 'en-US'
-    const Lang = 'ko-KR'
+    const Lang = 'en-US'
+    // const Lang = 'ko-KR'
     const Tmdb_api = `https://api.themoviedb.org/3/movie/${id}?api_key=${ApiKey}&language=${Lang}`;
     const Tmdb_api_getVideo = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${ApiKey}`;
     const Tmdb_api_getCredits = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${ApiKey}`;
@@ -112,8 +114,15 @@ function MovieDetails({ id, locationState }) {
 
         console.log('[MovieDetails] (loadCreditsInfo) response : ',(response));
         console.log('[MovieDetails] (loadCreditsInfo) response : ',(response.data.cast));
-        setCreditsInfo((response.data.cast.slice(0,4)));
 
+        if ((width > height)){
+          console.log("(width > height) true truetruetruetruetrue")
+          setCreditsInfo((response.data.cast.slice(0,4)));
+        }
+        else {
+          console.log("(width > height) false falsefalsefalsefalsefalse")
+          setCreditsInfo((response.data.cast.slice(0,2)));
+        }
       };
 
       loadDealInfo();
@@ -169,10 +178,17 @@ function MovieDetails({ id, locationState }) {
     const closeModal = () => {
       setModalOpen(false);
     };
-    const fontTitleSize = 40;
-    const fontTagSize = 18;
+    const fontTitleSize = 28;
+    const fontTagSize = 12;
+
+    const [windowDimensions] = useViewport()
+    const { width, height } = windowDimensions
+
+    console.log("[MovieDetails]  windowDimensions", windowDimensions);
+    console.log("[MovieDetails]  width, height", width, height);
+    
     return (
-      <Container style={{ marginTop: 100 }}>
+      <Container style={{ marginTop: 3 }}>
         {/* <Card key={movie.id} style={{ width: '50%', minHeight: 100, margin: 'auto' }}> */}
         <Card style = {{width: '100%'}}>
           {/* {loading ? (
@@ -190,11 +206,14 @@ function MovieDetails({ id, locationState }) {
             </Placeholder>
           ) : (
             <Card.Content  >
-              <Image size='large' floated='left' src={ 'https://image.tmdb.org/t/p/w500/'+movie.poster_path} />
+              <Image 
+                size={(height>500)?'medium' :'small'} 
+                floated='left' 
+                src={ 'https://image.tmdb.org/t/p/w500/'+movie.poster_path} />
               <Card.Header style={{fontSize:fontTitleSize}}>{movie.title}</Card.Header>
               {/*<Card.Meta><Icon name='tag'/> {movie.genres[0].name}</Card.Meta>*/}
 	            {movie.genres.length !== 0 && 
-                (<Card.Meta style={{fontSize:fontTitleSize-20}}>{movie.genres.length === 1 ? <Icon name='tag'/>:<Icon name='tags'/> }
+                (<Card.Meta style={{fontSize:fontTagSize}}>{movie.genres.length === 1 ? <Icon name='tag'/>:<Icon name='tags'/> }
                   {movie.genres.map((genre)=>{
                     return <span key={genre.name}>{` #${genre.name}`}</span>
                   })}
@@ -205,21 +224,24 @@ function MovieDetails({ id, locationState }) {
                     return <span key={idx}>{` #${cast.name}`}</span>
                   })}
                   </Card.Meta>)}
-	            {movie.release_date.length !== 0 && 
+	            {movie.release_date.length !== 0 && (height>500) &&
                 (<Card.Meta  style={{fontSize:fontTagSize}}><Icon name='time'/>{` ${movie.release_date}`}</Card.Meta>)}
-              {movie.tagline.length !== 0 && 
+              {movie.tagline.length !== 0 &&  (height>500) &&
                 (<Card.Meta  style={{fontSize:fontTagSize}}><Icon name='file archive outline'/>{` ${movie.tagline}`}</Card.Meta>)}
               
               <Card.Meta  style={{fontSize:fontTagSize}}><Icon name='chart bar'/><Rating icon='star' defaultRating={Math.round(Math.round(movie.vote_average)/2) } maxRating={5} disabled />({Math.round(movie.vote_average*10)/20}/5)</Card.Meta>
-              <Card.Header as="h1"> </Card.Header>
-              <Card.Meta>{movie.overview}</Card.Meta>
-              <Card.Header as="h1"> </Card.Header>
               
+              <Card.Header as="h1"> </Card.Header>
               {(youtubeInfo.length !== 0) &&
                 <Button style={{fontSize:fontTagSize}} onClick={onClickWatchButton} primary>Watch Trailer&nbsp;&nbsp;<Icon name='play circle outline'/></Button>}
 	              <MoviePlayer officialYoutube={officialYoutube} open={modalOpen} close={closeModal} />
+              <Card.Meta>{movie.overview}</Card.Meta>
               <Card.Header as="h1"> </Card.Header>
               
+              {/* {(youtubeInfo.length !== 0) &&
+                <Button style={{fontSize:fontTagSize}} onClick={onClickWatchButton} primary>Watch Trailer&nbsp;&nbsp;<Icon name='play circle outline'/></Button>}
+	              <MoviePlayer officialYoutube={officialYoutube} open={modalOpen} close={closeModal} /> */}
+                           
               <Rating icon='heart' defaultRating={0} maxRating={5} onRate={handleChangeOnRate} />
                 <Button style={{fontSize:fontTagSize}} onClick={() => { trackEvent({ EVENT_TYPE: 'click', movieId: `${movie.id}`, UserId:`${UserId}`, Rating: `${rating}`}); }}>
                   Rating

@@ -83,7 +83,12 @@ export const ContextProvider = props => {
     console.log('fetchLogin() Request email',email)
     console.log('fetchLogin() response 🎄🎄🎄',(response))
     console.log('fetchLogin() ⏪⏪⏪⏪⏪ passwd',(response.data[0].password))
-
+    
+    if(response.data == '') { 
+      console.log('🎄non user or invalid pwd',(response))    
+      return callback(new Error('Invalid email and password'));
+    }
+    
     const getpwd = response.data[0].password;
         // const username = result.find( ({ name }) => name === 'admin' );
     console.log("getpwd: ", getpwd)

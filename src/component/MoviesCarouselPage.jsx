@@ -48,6 +48,9 @@ function MoviesCarouselPage({ items, pageViewOrigin, cardStyle }) {
     function CarouselSwipe ()  {
       const [windowDimensions] = useViewport()
       const { width } = windowDimensions
+
+      console.log("[CarouselSwipe]  windowDimensions", windowDimensions);
+      console.log("[CarouselSwipe]  width", width);
     
 
        return (
@@ -60,25 +63,46 @@ function MoviesCarouselPage({ items, pageViewOrigin, cardStyle }) {
           draggable={false}
           modules={[Pagination, Navigation]}
           loop={true}
+          // loopAdditionalSlides={
+          //   width >= 1378 ? 4 : width >= 998 ? 3 : width >= 625 ? 2 : 2
+          // }
+          // breakpoints={{
+          //   1378: {
+          //     slidesPerView: 5,
+          //     slidesPerGroup: 5,
+          //   },
+          //   998: {
+          //     slidesPerView: 4,
+          //     slidesPerGroup: 4,
+          //   },
+          //   625: {
+          //     slidesPerView: 3,
+          //     slidesPerGroup: 3,
+          //   },
+          //   0: {
+          //     slidesPerView: 2,
+          //     slidesPerGroup: 2,
+          //   },
+          // }}
           loopAdditionalSlides={
-            width >= 1378 ? 4 : width >= 998 ? 3 : width >= 625 ? 2 : 2
+            width >= 1378 ? 6 : width >= 998 ? 5 : width >= 625 ? 4 : 4
           }
           breakpoints={{
             1378: {
+              slidesPerView: 7,
+              slidesPerGroup: 7,
+            },
+            998: {
+              slidesPerView: 6,
+              slidesPerGroup: 6,
+            },
+            625: {
               slidesPerView: 5,
               slidesPerGroup: 5,
             },
-            998: {
+            0: {
               slidesPerView: 4,
               slidesPerGroup: 4,
-            },
-            625: {
-              slidesPerView: 3,
-              slidesPerGroup: 3,
-            },
-            0: {
-              slidesPerView: 2,
-              slidesPerGroup: 2,
             },
           }}
           preventClicksPropagation={true}

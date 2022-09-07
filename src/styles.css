@@ -75,11 +75,14 @@
   padding-top: 3.5rem;
   padding-bottom: 4rem;
   min-height: 0;
-  object-fit: contain;
+  /* object-fit: contain; */
+  object-fit: fill;
 }
+
 .movieShowcase__container--movie:not(:last-child) {
   padding-right: 0.5rem;
 }
+
 .movieShowcase__container--movie-image {
   height: 100%;
   width: 100%;
@@ -169,7 +172,7 @@
 
 .ui.card {
   display: inline-block;
-  margin: 10px;
+  margin: 1px;
 }
 
 .ui.card,

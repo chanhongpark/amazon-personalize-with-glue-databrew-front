@@ -40,9 +40,9 @@ code {
 }
 .modal > section {
   width: 95%;
-  height: 80%;
+  height: 95%;
   /* max-width: 450px; */
-  max-width: 70%;  
+  max-width: 900%;  
   margin: 0 auto;
   border-radius: 0.3rem;
   background-color: #fff;
@@ -51,18 +51,18 @@ code {
 }
 .modal > section > header {
   position: relative;
-  height: 6%; 
-  padding: 10px 64px 10px 10px;
+  height: 8%; 
+  padding: 5px 64px 10px 10px;
   background-color: #f1f1f1;
   font-weight: 700;
   text-align: center;
 }
 .modal > section > header button {
   position: absolute;
-  top: -10px;
-  right: 15px;
+  top: -15px;
+  right: 10px;
   width: 40px;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 700;
   text-align: center;
   color: rgb(218, 144, 144);
@@ -70,7 +70,7 @@ code {
 }
 .modal > section > main {
   padding: 10px;
-  height: 94%; 
+  height: 92%; 
   border-bottom: 1px solid #dee2e6;
   border-top: 1px solid #dee2e6;
 }
