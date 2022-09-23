@@ -39,10 +39,10 @@ code {
   border: 0;
 }
 .modal > section {
-  width: 95%;
-  height: 95%;
+  width: 98%;
+  height: 98%;
   /* max-width: 450px; */
-  max-width: 900%;  
+  max-width: 900px;  
   margin: 0 auto;
   border-radius: 0.3rem;
   background-color: #fff;

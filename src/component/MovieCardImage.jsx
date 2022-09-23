@@ -7,7 +7,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 function MovieCardImage({movieName, minHeight, size, imageUrl}) {
   
-  console.log('❤❤❤❤',movieName,minHeight, imageUrl);
+  // console.log('❤❤❤❤',movieName,minHeight, imageUrl);
     return (
       // <Segment style={{minHeight, display: 'flex'}}>
         // <Image fluid Size={size} src={ imageUrl }  />

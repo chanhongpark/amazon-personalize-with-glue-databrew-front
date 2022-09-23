@@ -36,7 +36,7 @@ function MoviesList() {
   
     document.title = 'Pebble Moive';
     return (
-      <Container style={{ marginTop: 0 }}>
+      <Container style={{ marginTop: 5 }}>
         <NavLink to='/'><Icon name='arrow circle left'/>Go to Home</NavLink>
         <MoviesListCardGroup items={movies} pageViewOrigin='Browse'/>
       </Container>

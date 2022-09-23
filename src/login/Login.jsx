@@ -84,11 +84,10 @@ const LoginForm = () => {
     <Grid verticalAlign='middle' columns={(width > 700)? 2:1} centered >
     <Grid.Column>
 
-    <Container style={{ marginTop: 70 }} textAlign='center' >
-
+    <Container style={{ marginTop: 30 }} textAlign='center' >
       <h1> Welecom to Pebble Movie Recommendation</h1>
     </Container>
-    <Container style={{ marginTop: 70 }} fluid>
+    <Container style={{ marginTop: 30 }} fluid>
       <Image src="/image/pngwing.com.png" centered size={(height>500)?'medium':'small' }/>
     </Container>
 
@@ -96,7 +95,7 @@ const LoginForm = () => {
 
     <Grid.Column>
     
-    <Container style={{ marginTop: 70, width:'80%' }} >
+    <Container style={{ width:'80%' }} >
       <Form className='login-form' name="loginForm" onSubmit={onSubmit}>
       <Form.Field >
           <label >Selcet Admin</label>

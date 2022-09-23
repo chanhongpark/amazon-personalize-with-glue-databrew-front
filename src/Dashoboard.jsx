@@ -51,8 +51,8 @@ function Dashboard() {
     const [windowDimensions] = useViewport()
     const { width, height } = windowDimensions
   
-    console.log("[login]  windowDimensions", windowDimensions);
-    console.log("[login]  width, height", width, height);
+    console.log("[Dashboard]  windowDimensions", windowDimensions);
+    console.log("[Dashboard]  width, height", width, height);
 
 
     // export type IconSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
